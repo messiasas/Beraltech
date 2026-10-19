@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Beraltech | Software sob medida para empresas</title>
+<meta name="description" content="A Beraltech desenvolve sistemas web, aplicativos, integrações e soluções embarcadas sob medida para a operação da sua empresa.">
+<meta property="og:title" content="Beraltech | Software sob medida para empresas">
+<meta property="og:description" content="Sistemas, aplicativos e integrações feitos para o jeito que a sua empresa trabalha.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://beraltech.com.br">
+<link rel="canonical" href="https://beraltech.com.br">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%2312263A'/><path d='M10 8h7a5 5 0 0 1 0 10h-7zM10 18h8a5 5 0 0 1 0 10h-8z' fill='none' stroke='%23E8A317' stroke-width='3'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F3F6F5;
+    --surface: #FFFFFF;
+    --ink: #12263A;
+    --text: #22313F;
+    --muted: #556472;
+    --line: #D3DCDB;
+    --accent: #E8A317;
+    --accent-ink: #12263A;
+    --trace: #9FB3B0;
+    color-scheme: light;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0E1A26;
+      --surface: #152433;
+      --ink: #EDF2F1;
+      --text: #D5DEDD;
+      --muted: #9AABB4;
+      --line: #263A4C;
+      --accent: #F0B232;
+      --accent-ink: #0E1A26;
+      --trace: #3A5468;
+      color-scheme: dark;
+    }
+  }
+  *, *::before, *::after { box-sizing: inherit; }
+  html { scroll-behavior: smooth; scroll-padding-top: calc(72px + env(safe-area-inset-top, 0px)); }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { animation: none !important; } }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 400 1.0625rem/1.6 "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  h1, h2, h3 { font-family: "Bricolage Grotesque", "Instrument Sans", system-ui, sans-serif; color: var(--ink); line-height: 1.1; margin: 0; }
+  h2 { font-size: clamp(1.9rem, 4vw, 2.75rem); font-weight: 800; letter-spacing: -0.02em; max-width: 20ch; }
+  h3 { font-size: 1.25rem; font-weight: 700; }
+  p { margin: 0; }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+  .wrap { width: min(1120px, 100% - 2.5rem); margin-inline: auto; }
+  section { padding-block: clamp(4rem, 9vw, 7rem); }
+  .lead { color: var(--muted); max-width: 60ch; margin-top: 1rem; font-size: 1.125rem; }
+
+  /* Header */
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+  header {
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9;
+    background: color-mix(in srgb, var(--bg) 90%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 1rem; }
+  .brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; font: 800 1.35rem "Bricolage Grotesque", system-ui, sans-serif; color: var(--ink); letter-spacing: -0.02em; }
+  .nav ul { display: flex; gap: 1.75rem; list-style: none; margin: 0; padding: 0; }
+  .nav ul a { text-decoration: none; color: var(--muted); font-weight: 500; }
+  .nav ul a:hover { color: var(--ink); }
+  @media (max-width: 760px) { .nav ul { display: none; } }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: .85rem 1.4rem; border-radius: 999px; font-weight: 600; text-decoration: none;
+    border: 2px solid var(--ink); color: var(--ink); background: transparent; cursor: pointer; font: inherit; font-weight: 600;
+  }
+  .btn-primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .btn-primary:hover { filter: brightness(1.06); }
+  .btn-small { padding: .55rem 1.1rem; }
+
+  /* Hero */
+  .hero { padding-top: clamp(3rem, 7vw, 5.5rem); }
+  .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 3rem; align-items: center; }
+  .hero h1 { font-size: clamp(2.6rem, 6.4vw, 4.6rem); font-weight: 800; letter-spacing: -0.035em; max-width: 13ch; }
+  .hero .lead { font-size: 1.2rem; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 2rem; }
+  .hero-note { margin-top: 1.25rem; color: var(--muted); font-size: .95rem; }
+  .schematic { width: 100%; height: auto; }
+  .schematic .trace { fill: none; stroke: var(--trace); stroke-width: 2; }
+  .schematic .live { fill: none; stroke: var(--accent); stroke-width: 3; stroke-dasharray: 8 10; animation: flow 1.6s linear infinite; }
+  .schematic .node { fill: var(--surface); stroke: var(--line); stroke-width: 1.5; }
+  .schematic .core { fill: var(--ink); }
+  .schematic text { font: 500 13px "Instrument Sans", system-ui, sans-serif; fill: var(--text); }
+  .schematic .core-text { fill: var(--bg); font: 700 15px "Bricolage Grotesque", system-ui, sans-serif; }
+  @keyframes flow { to { stroke-dashoffset: -36; } }
+  @media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; } }
+
+  /* Serviços */
+  .services { display: grid; grid-template-columns: repeat(2, 1fr); margin-top: 3rem; border-top: 1px solid var(--line); }
+  .service { padding: 1.75rem 2rem 1.75rem 0; border-bottom: 1px solid var(--line); }
+  .service:nth-child(even) { padding-left: 2rem; padding-right: 0; border-left: 1px solid var(--line); }
+  .service p { color: var(--muted); margin-top: .5rem; max-width: 46ch; }
+  @media (max-width: 720px) {
+    .services { grid-template-columns: 1fr; }
+    .service, .service:nth-child(even) { padding: 1.5rem 0; border-left: 0; }
+  }
+
+  /* Processo */
+  .process-bg { background: var(--ink); color: var(--bg); }
+  .process-bg h2, .process-bg h3 { color: var(--bg); }
+  .process-bg .lead { color: color-mix(in srgb, var(--bg) 75%, var(--ink)); }
+  .steps { list-style: none; margin: 3rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; counter-reset: step; }
+  .steps li { counter-increment: step; border-top: 3px solid var(--accent); padding-top: 1.25rem; }
+  .steps li::before { content: counter(step); display: block; font: 800 2.5rem/1 "Bricolage Grotesque", system-ui, sans-serif; color: var(--accent); margin-bottom: .75rem; }
+  .steps p { margin-top: .5rem; color: color-mix(in srgb, var(--bg) 78%, var(--ink)); font-size: 1rem; }
+  @media (max-width: 860px) { .steps { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 520px) { .steps { grid-template-columns: 1fr; } }
+
+  /* Exemplos */
+  .examples { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 1.25rem; margin-top: 3rem; }
+  .example { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 1.75rem; }
+  .example:first-child { grid-row: span 2; display: flex; flex-direction: column; justify-content: flex-end; border-color: var(--accent); border-width: 2px; }
+  .example .tag { display: inline-block; font-size: .85rem; font-weight: 600; color: var(--muted); margin-bottom: .75rem; }
+  .example p { color: var(--muted); margin-top: .5rem; }
+  @media (max-width: 860px) { .examples { grid-template-columns: 1fr; } .example:first-child { grid-row: auto; } }
+
+  /* Sobre */
+  .about { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+  .about p + p { margin-top: 1rem; }
+  .stack { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.5rem; list-style: none; padding: 0; }
+  .stack li { border: 1px solid var(--line); border-radius: 999px; padding: .35rem .9rem; font-size: .95rem; background: var(--surface); }
+  @media (max-width: 860px) { .about { grid-template-columns: 1fr; } }
+
+  /* FAQ */
+  .faq { margin-top: 2.5rem; max-width: 760px; }
+  .faq details { border-bottom: 1px solid var(--line); padding: 1.25rem 0; }
+  .faq summary { cursor: pointer; font-weight: 600; color: var(--ink); font-size: 1.1rem; list-style: none; display: flex; justify-content: space-between; gap: 1rem; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; font: 700 1.4rem/1 "Bricolage Grotesque", system-ui, sans-serif; color: var(--accent); transition: transform .2s; }
+  .faq details[open] summary::after { transform: rotate(45deg); }
+  .faq details p { margin-top: .75rem; color: var(--muted); max-width: 65ch; }
+
+  /* Contato */
+  .contact { display: grid; grid-template-columns: .9fr 1.1fr; gap: 3rem; }
+  .channels { list-style: none; padding: 0; margin: 2rem 0 0; display: grid; gap: 1rem; }
+  .channels span { display: block; font-size: .9rem; color: var(--muted); }
+  .channels a { font-weight: 600; font-size: 1.1rem; color: var(--ink); text-decoration-color: var(--accent); text-underline-offset: 4px; }
+  form { background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: clamp(1.5rem, 4vw, 2.25rem); display: grid; gap: 1rem; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  label { display: grid; gap: .35rem; font-weight: 500; font-size: .95rem; color: var(--ink); }
+  input, textarea, select {
+    font: inherit; color: var(--text); background: var(--bg); border: 1px solid var(--line);
+    border-radius: 10px; padding: .75rem .9rem; width: 100%;
+  }
+  textarea { min-height: 130px; resize: vertical; }
+  .privacy { font-size: .85rem; color: var(--muted); }
+  @media (max-width: 860px) { .contact { grid-template-columns: 1fr; } }
+  @media (max-width: 520px) { .row { grid-template-columns: 1fr; } }
+
+  /* Rodapé */
+  footer { border-top: 1px solid var(--line); padding-block: 2.5rem; color: var(--muted); font-size: .95rem; }
+  .foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
+
+  /* WhatsApp flutuante */
+  .wa {
+    position: fixed; right: 1.25rem; bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px)); z-index: 8;
+    width: 56px; height: 56px; border-radius: 50%; background: #25D366; display: grid; place-items: center;
+    box-shadow: 0 6px 18px rgba(0,0,0,.25);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap nav" aria-label="Principal">
+    <a class="brand" href="#inicio">
+      <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#12263A"/><path d="M10 8h7a5 5 0 0 1 0 10h-7zM10 18h8a5 5 0 0 1 0 10h-8z" fill="none" stroke="#E8A317" stroke-width="3"/></svg>
+      Beraltech
+    </a>
+    <ul>
+      <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#processo">Como trabalhamos</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#faq">Dúvidas</a></li>
+    </ul>
+    <a class="btn btn-primary btn-small" href="#contato">Solicitar orçamento</a>
+  </nav>
+</header>
+
+<main id="inicio">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <h1>Software feito para o jeito que a sua empresa trabalha.</h1>
+        <p class="lead">Somos um time de desenvolvedores que cria sistemas web, aplicativos e integrações sob medida. Você explica o problema, nós desenhamos e entregamos a solução.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contato">Solicitar orçamento</a>
+          <a class="btn" href="#servicos">Ver o que fazemos</a>
+        </div>
+        <p class="hero-note">Primeira conversa sem custo. Resposta em até 1 dia útil.</p>
+      </div>
+      <svg class="schematic" viewBox="0 0 440 360" role="img" aria-label="Diagrama: planilhas, processos manuais e sistemas separados se conectam a um sistema sob medida">
+        <path class="trace" d="M120 60 H190 V170 H210"/>
+        <path class="trace" d="M120 180 H210"/>
+        <path class="trace" d="M120 300 H190 V190 H210"/>
+        <path class="live" d="M330 180 H380 V80"/>
+        <path class="live" d="M330 180 H380 V280"/>
+        <rect class="node" x="10" y="36" width="110" height="48" rx="10"/><text x="65" y="65" text-anchor="middle">Planilhas</text>
+        <rect class="node" x="10" y="156" width="110" height="48" rx="10"/><text x="65" y="185" text-anchor="middle">Processos à mão</text>
+        <rect class="node" x="10" y="276" width="110" height="48" rx="10"/><text x="65" y="305" text-anchor="middle">Sistemas soltos</text>
+        <rect class="core" x="210" y="140" width="120" height="80" rx="16"/>
+        <text class="core-text" x="270" y="176" text-anchor="middle">Sistema</text>
+        <text class="core-text" x="270" y="196" text-anchor="middle">sob medida</text>
+        <rect class="node" x="330" y="34" width="100" height="46" rx="10"/><text x="380" y="62" text-anchor="middle">Web</text>
+        <rect class="node" x="330" y="280" width="100" height="46" rx="10"/><text x="380" y="308" text-anchor="middle">App</text>
+      </svg>
+    </div>
+  </section>
+
+  <section id="servicos">
+    <div class="wrap">
+      <h2>O que desenvolvemos</h2>
+      <p class="lead">Cada projeto começa do zero, a partir da rotina e dos objetivos da sua empresa.</p>
+      <div class="services">
+        <article class="service"><h3>Sistemas web</h3><p>Painéis de gestão, portais para clientes e sistemas internos que rodam direto no navegador.</p></article>
+        <article class="service"><h3>Aplicativos Android</h3><p>Apps para equipes de campo, vendas e atendimento, incluindo terminais POS.</p></article>
+        <article class="service"><h3>Integrações e APIs</h3><p>Conectamos ERPs, meios de pagamento e serviços externos para os dados pararem de ser digitados duas vezes.</p></article>
+        <article class="service"><h3>Automação de processos</h3><p>Relatórios, conciliações e tarefas repetitivas que passam a acontecer sozinhas.</p></article>
+        <article class="service"><h3>IoT e sistemas embarcados</h3><p>Firmware, comunicação via rede celular e Wi-Fi e plataformas para acompanhar dispositivos.</p></article>
+        <article class="service"><h3>Nuvem e sustentação</h3><p>Hospedagem, monitoramento e manutenção para o sistema continuar funcionando depois da entrega.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="processo" class="process-bg">
+    <div class="wrap">
+      <h2>Como trabalhamos</h2>
+      <p class="lead">Um processo curto e transparente, com entregas que você acompanha desde a primeira semana.</p>
+      <ol class="steps">
+        <li><h3>Diagnóstico</h3><p>Entendemos sua operação, o problema e o que precisa mudar.</p></li>
+        <li><h3>Proposta</h3><p>Escopo, prazo e investimento definidos por escrito, sem surpresas.</p></li>
+        <li><h3>Desenvolvimento</h3><p>Entregas parciais para você testar e ajustar o rumo durante o projeto.</p></li>
+        <li><h3>Entrega e suporte</h3><p>Colocamos no ar, treinamos sua equipe e seguimos dando suporte.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Problemas que resolvemos</h2>
+      <p class="lead">Exemplos do tipo de solução que construímos. Substitua por cases reais assim que tiver os primeiros projetos.</p>
+      <div class="examples">
+        <article class="example"><span class="tag">Gestão</span><h3>Do controle em planilha para um sistema único</h3><p>Uma empresa que controlava pedidos, estoque e entregas em várias planilhas passa a ter tudo em um painel web, com histórico e relatórios automáticos.</p></article>
+        <article class="example"><span class="tag">Campo</span><h3>App para equipe externa</h3><p>Técnicos registram atendimentos e fotos pelo celular, mesmo sem sinal.</p></article>
+        <article class="example"><span class="tag">Integração</span><h3>Vendas que entram sozinhas no ERP</h3><p>Pedidos da loja online chegam ao sistema financeiro sem digitação.</p></article>
+        <article class="example"><span class="tag">Dispositivos</span><h3>Monitoramento remoto</h3><p>Equipamentos enviam status pela rede celular para um painel na nuvem.</p></article>
+        <article class="example"><span class="tag">Automação</span><h3>Relatório diário automático</h3><p>Dados de várias fontes viram um resumo enviado toda manhã.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre">
+    <div class="wrap about">
+      <div>
+        <h2>Quem está por trás da Beraltech</h2>
+      </div>
+      <div>
+        <p>Somos um grupo de desenvolvedores com experiência em sistemas web, aplicativos, infraestrutura em nuvem, redes e dispositivos embarcados.</p>
+        <p>Trabalhamos perto do cliente: quem participa da conversa inicial é quem desenvolve a solução. Isso encurta o caminho entre a ideia e o sistema funcionando.</p>
+        <ul class="stack" aria-label="Tecnologias">
+          <li>Node.js</li><li>Java</li><li>Kotlin</li><li>C</li><li>MySQL</li><li>Docker</li><li>Azure</li><li>Linux</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <h2>Dúvidas frequentes</h2>
+      <div class="faq">
+        <details><summary>Quanto custa um sistema sob medida?</summary><p>Depende do tamanho do problema. Depois da conversa de diagnóstico enviamos uma proposta com escopo, prazo e valor fechados.</p></details>
+        <details><summary>Quanto tempo leva para ficar pronto?</summary><p>Projetos menores ficam prontos em poucas semanas. Projetos maiores são divididos em etapas, e a primeira versão utilizável chega rápido.</p></details>
+        <details><summary>O código e o sistema ficam com a minha empresa?</summary><p>Sim. Ao final do projeto, o código e os acessos são entregues a você.</p></details>
+        <details><summary>Vocês oferecem suporte depois da entrega?</summary><p>Sim. Oferecemos planos mensais de manutenção, hospedagem e melhorias contínuas.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section id="contato">
+    <div class="wrap contact">
+      <div>
+        <h2>Conte o que sua empresa precisa</h2>
+        <p class="lead">Descreva o problema em poucas linhas. Respondemos em até 1 dia útil para marcar uma conversa.</p>
+        <ul class="channels">
+          <li><span>E-mail</span><a href="mailto:contato@beraltech.com.br">contato@beraltech.com.br</a></li>
+          <li><span>WhatsApp</span><a href="https://wa.me/5500000000000">(00) 00000-0000</a></li>
+          <li><span>LinkedIn</span><a href="https://www.linkedin.com/company/beraltech">/company/beraltech</a></li>
+        </ul>
+      </div>
+      <!-- Troque SEU_ID pelo ID gerado no formspree.io (plano gratuito) -->
+      <form action="https://formspree.io/f/SEU_ID" method="POST">
+        <div class="row">
+          <label>Nome<input name="nome" required autocomplete="name"></label>
+          <label>Empresa<input name="empresa" autocomplete="organization"></label>
+        </div>
+        <div class="row">
+          <label>E-mail<input type="email" name="email" required autocomplete="email"></label>
+          <label>Telefone<input type="tel" name="telefone" autocomplete="tel"></label>
+        </div>
+        <label>Tipo de projeto
+          <select name="tipo">
+            <option>Sistema web</option><option>Aplicativo</option><option>Integração</option>
+            <option>IoT ou embarcados</option><option>Ainda não sei</option>
+          </select>
+        </label>
+        <label>Descreva o que precisa<textarea name="mensagem" required></textarea></label>
+        <button class="btn btn-primary" type="submit">Enviar mensagem</button>
+        <p class="privacy">Usamos seus dados só para responder a este contato. Veja a <a href="/privacidade.html">política de privacidade</a>.</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <p>© <span id="ano"></span> Beraltech. CNPJ 00.000.000/0001-00</p>
+    <p><a href="/privacidade.html">Política de privacidade</a></p>
+  </div>
+</footer>
+
+<a class="wa" href="https://wa.me/5500000000000" aria-label="Falar pelo WhatsApp">
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3z"/></svg>
+</a>
+
+<script>document.getElementById("ano").textContent = new Date().getFullYear();</script>
+</body>
+</html>
