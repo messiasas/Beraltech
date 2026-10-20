@@ -1,0 +1,180 @@
+/* =========================================================
+   BERALTECH · estilos
+   ========================================================= */
+  :root {
+    --bg: #F3F6F5;
+    --surface: #FFFFFF;
+    --ink: #12263A;
+    --text: #22313F;
+    --muted: #556472;
+    --line: #D3DCDB;
+    --accent: #E8A317;
+    --accent-ink: #12263A;
+    --trace: #9FB3B0;
+    color-scheme: light;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0E1A26;
+      --surface: #152433;
+      --ink: #EDF2F1;
+      --text: #D5DEDD;
+      --muted: #9AABB4;
+      --line: #263A4C;
+      --accent: #F0B232;
+      --accent-ink: #0E1A26;
+      --trace: #3A5468;
+      color-scheme: dark;
+    }
+  }
+  *, *::before, *::after { box-sizing: inherit; }
+  html { scroll-behavior: smooth; scroll-padding-top: calc(72px + env(safe-area-inset-top, 0px)); }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { animation: none !important; } }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 400 1.0625rem/1.6 "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  h1, h2, h3 { font-family: "Bricolage Grotesque", "Instrument Sans", system-ui, sans-serif; color: var(--ink); line-height: 1.1; margin: 0; }
+  h2 { font-size: clamp(1.9rem, 4vw, 2.75rem); font-weight: 800; letter-spacing: -0.02em; max-width: 20ch; }
+  h3 { font-size: 1.25rem; font-weight: 700; }
+  p { margin: 0; }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+  .wrap { width: min(1120px, 100% - 2.5rem); margin-inline: auto; }
+  section { padding-block: clamp(4rem, 9vw, 7rem); }
+  .lead { color: var(--muted); max-width: 60ch; margin-top: 1rem; font-size: 1.125rem; }
+
+  /* Header */
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+  header {
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9;
+    background: color-mix(in srgb, var(--bg) 90%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 1rem; }
+  .brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; font: 800 1.35rem "Bricolage Grotesque", system-ui, sans-serif; color: var(--ink); letter-spacing: -0.02em; }
+  .nav ul { display: flex; gap: 1.75rem; list-style: none; margin: 0; padding: 0; }
+  .nav ul a { text-decoration: none; color: var(--muted); font-weight: 500; }
+  .nav ul a:hover { color: var(--ink); }
+  @media (max-width: 760px) { .nav ul { display: none; } }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: .85rem 1.4rem; border-radius: 999px; font-weight: 600; text-decoration: none;
+    border: 2px solid var(--ink); color: var(--ink); background: transparent; cursor: pointer; font: inherit; font-weight: 600;
+  }
+  .btn-primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .btn-primary:hover { filter: brightness(1.06); }
+  .btn-small { padding: .55rem 1.1rem; }
+
+  /* Hero */
+  .hero { padding-top: clamp(3rem, 7vw, 5.5rem); }
+  .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 3rem; align-items: center; }
+  .hero h1 { font-size: clamp(2.6rem, 6.4vw, 4.6rem); font-weight: 800; letter-spacing: -0.035em; max-width: 13ch; }
+  .hero .lead { font-size: 1.2rem; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 2rem; }
+  .hero-note { margin-top: 1.25rem; color: var(--muted); font-size: .95rem; }
+  .schematic { width: 100%; height: auto; }
+  .schematic .trace { fill: none; stroke: var(--trace); stroke-width: 2; }
+  .schematic .live { fill: none; stroke: var(--accent); stroke-width: 3; stroke-dasharray: 8 10; animation: flow 1.6s linear infinite; }
+  .schematic .node { fill: var(--surface); stroke: var(--line); stroke-width: 1.5; }
+  .schematic .core { fill: var(--ink); }
+  .schematic text { font: 500 13px "Instrument Sans", system-ui, sans-serif; fill: var(--text); }
+  .schematic .core-text { fill: var(--bg); font: 700 15px "Bricolage Grotesque", system-ui, sans-serif; }
+  @keyframes flow { to { stroke-dashoffset: -36; } }
+  @media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; } }
+
+  /* Serviços */
+  .services { display: grid; grid-template-columns: repeat(2, 1fr); margin-top: 3rem; border-top: 1px solid var(--line); }
+  .service { padding: 1.75rem 2rem 1.75rem 0; border-bottom: 1px solid var(--line); }
+  .service:nth-child(even) { padding-left: 2rem; padding-right: 0; border-left: 1px solid var(--line); }
+  .service p { color: var(--muted); margin-top: .5rem; max-width: 46ch; }
+  @media (max-width: 720px) {
+    .services { grid-template-columns: 1fr; }
+    .service, .service:nth-child(even) { padding: 1.5rem 0; border-left: 0; }
+  }
+
+  /* Processo */
+  .process-bg { background: var(--ink); color: var(--bg); }
+  .process-bg h2, .process-bg h3 { color: var(--bg); }
+  .process-bg .lead { color: color-mix(in srgb, var(--bg) 75%, var(--ink)); }
+  .steps { list-style: none; margin: 3rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; counter-reset: step; }
+  .steps li { counter-increment: step; border-top: 3px solid var(--accent); padding-top: 1.25rem; }
+  .steps li::before { content: counter(step); display: block; font: 800 2.5rem/1 "Bricolage Grotesque", system-ui, sans-serif; color: var(--accent); margin-bottom: .75rem; }
+  .steps p { margin-top: .5rem; color: color-mix(in srgb, var(--bg) 78%, var(--ink)); font-size: 1rem; }
+  @media (max-width: 860px) { .steps { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 520px) { .steps { grid-template-columns: 1fr; } }
+
+  /* Exemplos */
+  .examples { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 1.25rem; margin-top: 3rem; }
+  .example { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 1.75rem; }
+  .example:first-child { grid-row: span 2; display: flex; flex-direction: column; justify-content: flex-end; border-color: var(--accent); border-width: 2px; }
+  .example .tag { display: inline-block; font-size: .85rem; font-weight: 600; color: var(--muted); margin-bottom: .75rem; }
+  .example p { color: var(--muted); margin-top: .5rem; }
+  @media (max-width: 860px) { .examples { grid-template-columns: 1fr; } .example:first-child { grid-row: auto; } }
+
+  /* Sobre */
+  .about { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+  .about p + p { margin-top: 1rem; }
+  .stack { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.5rem; list-style: none; padding: 0; }
+  .stack li { border: 1px solid var(--line); border-radius: 999px; padding: .35rem .9rem; font-size: .95rem; background: var(--surface); }
+  @media (max-width: 860px) { .about { grid-template-columns: 1fr; } }
+
+  /* FAQ */
+  .faq { margin-top: 2.5rem; max-width: 760px; }
+  .faq details { border-bottom: 1px solid var(--line); padding: 1.25rem 0; }
+  .faq summary { cursor: pointer; font-weight: 600; color: var(--ink); font-size: 1.1rem; list-style: none; display: flex; justify-content: space-between; gap: 1rem; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; font: 700 1.4rem/1 "Bricolage Grotesque", system-ui, sans-serif; color: var(--accent); transition: transform .2s; }
+  .faq details[open] summary::after { transform: rotate(45deg); }
+  .faq details p { margin-top: .75rem; color: var(--muted); max-width: 65ch; }
+
+  /* Contato */
+  .contact { display: grid; grid-template-columns: .9fr 1.1fr; gap: 3rem; }
+  .channels { list-style: none; padding: 0; margin: 2rem 0 0; display: grid; gap: 1rem; }
+  .channels span { display: block; font-size: .9rem; color: var(--muted); }
+  .channels a { font-weight: 600; font-size: 1.1rem; color: var(--ink); text-decoration-color: var(--accent); text-underline-offset: 4px; }
+  form { background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: clamp(1.5rem, 4vw, 2.25rem); display: grid; gap: 1rem; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  label { display: grid; gap: .35rem; font-weight: 500; font-size: .95rem; color: var(--ink); }
+  input, textarea, select {
+    font: inherit; color: var(--text); background: var(--bg); border: 1px solid var(--line);
+    border-radius: 10px; padding: .75rem .9rem; width: 100%;
+  }
+  textarea { min-height: 130px; resize: vertical; }
+  .privacy { font-size: .85rem; color: var(--muted); }
+  @media (max-width: 860px) { .contact { grid-template-columns: 1fr; } }
+  @media (max-width: 520px) { .row { grid-template-columns: 1fr; } }
+
+  /* Rodapé */
+  footer { border-top: 1px solid var(--line); padding-block: 2.5rem; color: var(--muted); font-size: .95rem; }
+  .foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
+
+  /* WhatsApp flutuante */
+  .wa {
+    position: fixed; right: 1.25rem; bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px)); z-index: 8;
+    width: 56px; height: 56px; border-radius: 50%; background: #25D366; display: grid; place-items: center;
+    box-shadow: 0 6px 18px rgba(0,0,0,.25);
+  }
+
+/* Contatos da equipe e redes sociais */
+.channels small { display: block; color: var(--muted); font-size: .85rem; }
+.socials { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.75rem; }
+.socials a { display: inline-flex; align-items: center; gap: .5rem; padding: .55rem 1rem; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink); text-decoration: none; font-weight: 600; }
+.socials a:hover { border-color: var(--accent); }
+.socials svg { width: 18px; height: 18px; fill: currentColor; }
+.hint { font-weight: 400; font-size: .85rem; color: var(--muted); }
+.form-status { margin: 0; min-height: 1.4em; font-weight: 600; }
+input.is-invalid, textarea.is-invalid { border-color: #C0392B; }
+.foot nav { display: flex; gap: 1.25rem; }
+
+/* Imagem no card de destaque de "Problemas que resolvemos" */
+.example--featured { justify-content: flex-start !important; }
+.example__shot { display: block; margin: -.5rem -.5rem 1.25rem; border-radius: 12px; overflow: hidden; border: 1px solid var(--line); }
+.example__shot img { display: block; width: 100%; height: auto; }
