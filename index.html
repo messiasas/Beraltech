@@ -24,7 +24,10 @@
       <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#12263A"/><path d="M10 8h7a5 5 0 0 1 0 10h-7zM10 18h8a5 5 0 0 1 0 10h-8z" fill="none" stroke="#E8A317" stroke-width="3"/></svg>
       Beraltech
     </a>
-    <ul>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul id="menu">
       <li><a href="#servicos">Serviços</a></li>
       <li><a href="#processo">Como trabalhamos</a></li>
       <li><a href="#sobre">Sobre</a></li>
@@ -95,7 +98,7 @@
   <section>
     <div class="wrap">
       <h2>Problemas que resolvemos</h2>
-      <p class="lead">Exemplos do tipo de solução que construímos. Substitua por cases reais assim que tiver os primeiros projetos.</p>
+      <p class="lead">Exemplos do tipo de solução que construímos para empresas que querem parar de depender de planilhas e retrabalho.</p>
       <div class="examples">
         <article class="example example--featured">
           <div class="example__shot">
@@ -143,9 +146,7 @@
         <h2>Conte o que sua empresa precisa</h2>
         <p class="lead">Descreva o problema em poucas linhas. Respondemos em até 1 dia útil para marcar uma conversa.</p>
         <ul class="channels">
-          <li><span>Filipe Messias</span><a href="mailto:filipe.messias@beraltech.com.br">filipe.messias@beraltech.com.br</a></li>
-          <li><span>Michell Platini</span><a href="mailto:michell.platini@beraltech.com.br">michell.platini@beraltech.com.br</a></li>
-          <li><span>Raul Assis</span><a href="mailto:raul.assis@beraltech.com.br">raul.assis@beraltech.com.br</a></li>
+          <li><span>E-mail</span><a href="mailto:Michell.Platini@Beraltech.com.br">Michell.Platini@Beraltech.com.br</a></li>
           <li><span>Telefone / WhatsApp</span><a href="https://wa.me/5511910199419" target="_blank" rel="noopener">(11) 91019-9419</a></li>
           <li><span>Telefone / WhatsApp</span><a href="https://wa.me/5511964276866" target="_blank" rel="noopener">(11) 96427-6866</a></li>
         </ul>
@@ -154,8 +155,8 @@
           <a href="https://www.facebook.com/share/1E44PCqQSD/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.3v7A10 10 0 0 0 22 12z"/></svg>Facebook</a>
         </div>
       </div>
-      <!-- Troque SEU_ID pelo ID gerado no formspree.io (plano gratuito) -->
-      <form id="form-contato" action="https://formspree.io/f/SEU_ID" method="POST" novalidate>
+      <!-- O formulário não usa servidor: ao enviar, abre o WhatsApp com a mensagem já preenchida -->
+      <form id="form-contato" novalidate>
         <div class="row">
           <label>Nome<input name="nome" required autocomplete="name"></label>
           <label>Empresa<input name="empresa" autocomplete="organization"></label>
@@ -164,19 +165,22 @@
           <input name="rede_social" id="rede-social" placeholder="@suaempresa ou link da página" autocomplete="off" spellcheck="false">
         </label>
         <div class="row">
-          <label>E-mail<input type="email" name="email" required autocomplete="email"></label>
+          <label><span>E-mail <span class="hint">(opcional)</span></span><input type="email" name="email" autocomplete="email"></label>
           <label>Telefone<input type="tel" name="telefone" id="telefone" inputmode="tel" placeholder="(00) 00000-0000" autocomplete="tel"></label>
         </div>
         <label>Tipo de projeto
-          <select name="tipo">
+          <select name="tipo" id="tipo">
             <option>Sistema web</option><option>Aplicativo</option><option>Integração</option>
             <option>IoT ou embarcados</option><option>Ainda não sei</option>
           </select>
         </label>
         <label>Descreva o que precisa<textarea name="mensagem" required></textarea></label>
-        <button class="btn btn-primary" type="submit">Enviar mensagem</button>
+        <button class="btn btn-whatsapp" type="submit">
+          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3z"/></svg>
+          Enviar pelo WhatsApp
+        </button>
         <p class="form-status" role="status" aria-live="polite"></p>
-        <p class="privacy">Usamos seus dados só para responder a este contato. Veja a <a href="/privacidade.html">política de privacidade</a>.</p>
+        <p class="privacy">Usamos seus dados só para responder a este contato. Veja a <a href="privacidade.html">política de privacidade</a>.</p>
       </form>
     </div>
   </section>
@@ -184,11 +188,11 @@
 
 <footer>
   <div class="wrap foot">
-    <p>© <span id="ano"></span> Beraltech. CNPJ 00.000.000/0001-00</p>
+    <p>© <span id="ano"></span> Beraltech.</p>
     <nav aria-label="Redes sociais e links">
       <a href="https://www.instagram.com/beraltech/" target="_blank" rel="noopener">Instagram</a>
       <a href="https://www.facebook.com/share/1E44PCqQSD/" target="_blank" rel="noopener">Facebook</a>
-      <a href="/privacidade.html">Política de privacidade</a>
+      <a href="privacidade.html">Política de privacidade</a>
     </nav>
   </div>
 </footer>

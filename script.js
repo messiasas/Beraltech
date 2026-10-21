@@ -31,46 +31,83 @@ redeSocial.addEventListener("blur", () => {
   redeSocial.value = v;
 });
 
-// Envio do formulário pelo Formspree sem recarregar a página
-const form = document.getElementById("form-contato");
-const status = form.querySelector(".form-status");
-
-form.addEventListener("submit", async e => {
-  e.preventDefault();
-
-  // Validação dos campos obrigatórios
-  let valido = true;
-  form.querySelectorAll("[required]").forEach(campo => {
-    const ok = campo.checkValidity();
-    campo.classList.toggle("is-invalid", !ok);
-    if (!ok) valido = false;
-  });
-  if (!valido) {
-    status.textContent = "Preencha nome, um e-mail válido e a descrição do que precisa.";
-    form.querySelector(".is-invalid").focus();
-    return;
-  }
-
-  if (form.action.includes("SEU_ID")) {
-    status.textContent = "Formulário ainda não configurado. Fale com a gente pelo WhatsApp.";
-    return;
-  }
-
-  status.textContent = "Enviando...";
-  try {
-    const resposta = await fetch(form.action, {
-      method: "POST",
-      body: new FormData(form),
-      headers: { Accept: "application/json" }
-    });
-    if (!resposta.ok) throw new Error();
-    form.reset();
-    status.textContent = "Mensagem enviada. Respondemos em até 1 dia útil.";
-  } catch {
-    status.textContent = "Não foi possível enviar agora. Tente pelo WhatsApp.";
-  }
+// Menu mobile
+const navToggle = document.querySelector(".nav-toggle");
+const menu = document.getElementById("menu");
+const fecharMenu = () => {
+  menu.classList.remove("is-open");
+  navToggle.setAttribute("aria-expanded", "false");
+  navToggle.setAttribute("aria-label", "Abrir menu");
+};
+navToggle.addEventListener("click", () => {
+  const aberto = menu.classList.toggle("is-open");
+  navToggle.setAttribute("aria-expanded", String(aberto));
+  navToggle.setAttribute("aria-label", aberto ? "Fechar menu" : "Abrir menu");
+});
+menu.querySelectorAll("a").forEach(a => a.addEventListener("click", fecharMenu));
+document.addEventListener("keydown", e => { if (e.key === "Escape") fecharMenu(); });
+document.addEventListener("click", e => {
+  if (!e.target.closest(".nav")) fecharMenu();
 });
 
-form.querySelectorAll("[required]").forEach(c =>
-  c.addEventListener("input", () => c.classList.remove("is-invalid"))
+// Envio do formulário pelo WhatsApp: abre a conversa com os dados já preenchidos
+const WHATSAPP = "5511910199419";
+const form = document.getElementById("form-contato");
+const status = form.querySelector(".form-status");
+const camposValidados = [...form.querySelectorAll("[required]"), form.elements.email, telefone];
+
+const mostrarStatus = (texto, tipo = "") => {
+  status.textContent = texto;
+  status.className = `form-status ${tipo}`.trim();
+};
+
+const linkWhatsApp = () => {
+  const d = new FormData(form);
+  const texto = [
+    "Olá, vim pelo site da Beraltech.",
+    `Nome: ${d.get("nome")}`,
+    d.get("empresa") && `Empresa: ${d.get("empresa")}`,
+    d.get("rede_social") && `Instagram/Facebook: ${d.get("rede_social")}`,
+    d.get("email") && `E-mail: ${d.get("email")}`,
+    d.get("telefone") && `Telefone: ${d.get("telefone")}`,
+    `Tipo de projeto: ${d.get("tipo")}`,
+    `Mensagem: ${d.get("mensagem")}`
+  ].filter(Boolean).join("\n");
+  return `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(texto)}`;
+};
+
+// Campos obrigatórios precisam estar preenchidos; e-mail e telefone, se informados, precisam ser válidos
+const validarCampo = campo => {
+  let ok = campo.checkValidity() && (!campo.required || campo.value.trim() !== "");
+  if (campo === telefone && campo.value) ok = campo.value.replace(/\D/g, "").length >= 10;
+  campo.classList.toggle("is-invalid", !ok);
+  campo.setAttribute("aria-invalid", String(!ok));
+  return ok;
+};
+
+form.addEventListener("submit", e => {
+  e.preventDefault();
+  const invalidos = camposValidados.filter(c => !validarCampo(c));
+  if (invalidos.length) {
+    mostrarStatus("Preencha seu nome e a descrição do que precisa. Se informar e-mail ou telefone, confira se estão corretos.", "is-error");
+    invalidos[0].focus();
+    return;
+  }
+  window.open(linkWhatsApp(), "_blank", "noopener");
+  mostrarStatus("Abrimos o WhatsApp com sua mensagem. É só tocar em enviar por lá.", "is-ok");
+});
+
+camposValidados.forEach(c => {
+  c.addEventListener("input", () => {
+    c.classList.remove("is-invalid");
+    c.removeAttribute("aria-invalid");
+  });
+  c.addEventListener("blur", () => { if (c.value) validarCampo(c); });
+});
+
+// Botões "Solicitar orçamento" levam o foco direto para o formulário
+document.querySelectorAll('a[href="#contato"]').forEach(a =>
+  a.addEventListener("click", () =>
+    setTimeout(() => form.elements.nome.focus({ preventScroll: true }), 400)
+  )
 );
